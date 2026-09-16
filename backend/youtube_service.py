@@ -216,7 +216,12 @@ def create_vector_store(transcript_text: str):
     )
 
     return FAISS.from_documents(chunks, embeddings)
-def create_chain(retriever):
+def create_chain(vector_store):
+
+    retriever = vector_store.as_retriever(
+        search_type="similarity",
+        search_kwargs={"k": 4}
+    )
 
     llm = ChatGroq(
         model="openai/gpt-oss-120b"
