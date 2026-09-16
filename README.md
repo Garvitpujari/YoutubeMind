@@ -1,54 +1,47 @@
-# YouTubeMind
+# YouTubeMind 🎥🧠
 
-> Don't watch the whole video. Ask YouTubeMind.
+YouTubeMind is an AI-powered application that lets you ask questions about YouTube videos.
 
-YouTubeMind is an AI-powered YouTube video assistant that lets users provide a YouTube video URL and ask questions about its content.
+It uses Retrieval-Augmented Generation (RAG) to:
 
-The project uses a Retrieval-Augmented Generation (RAG) pipeline to retrieve relevant parts of a video's transcript and generate answers using an LLM.
+1. Fetch the YouTube transcript
+2. Split the transcript into chunks
+3. Generate embeddings
+4. Store the embeddings in FAISS
+5. Retrieve the most relevant transcript sections
+6. Use Groq to generate an answer grounded in the transcript
 
-## Live Demo
+## 🚀 Live Demo
 
-**Frontend:**  
+Frontend:
 https://youtube-mind-alpha.vercel.app
 
-**Backend API:**  
+Backend:
 https://youtubemind-backend.onrender.com
 
-**API Documentation:**  
-https://youtubemind-backend.onrender.com/docs
+> The deployed backend may not be able to retrieve transcripts for every YouTube video because YouTube can restrict transcript access from cloud-hosted IP addresses.
+>
+> For reliable testing, run the project locally using your own API keys.
 
-> The frontend is the user-facing application. The backend URL exposes the FastAPI API.
+---
 
-## Features
-
-- YouTube URL input
-- Transcript-based question answering
-- Automatic transcript chunking
-- Hugging Face embeddings
-- FAISS vector similarity search
-- Context-aware answers using Groq
-- React frontend
-- FastAPI backend
-
-## Architecture
+## 📁 Project Structure
 
 ```text
-React Frontend
-       ↓
-FastAPI Backend
-       ↓
-YouTube Transcript
-       ↓
-Text Chunking
-       ↓
-Hugging Face Embeddings
-       ↓
-FAISS Vector Store
-       ↓
-Similarity Retrieval
-       ↓
-Groq LLM
-       ↓
-Answer
-       ↓
-React Frontend
+YouTubeMind/
+│
+├── backend/
+│   ├── main.py
+│   ├── youtube_service.py
+│   ├── requirements.txt
+│   └── .env
+│
+├── frontend/
+│   ├── src/
+│   │   ├── App.jsx
+│   │   ├── index.css
+│   │   └── main.jsx
+│   ├── package.json
+│   └── vite.config.js
+│
+└── .gitignore
