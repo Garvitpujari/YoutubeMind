@@ -143,6 +143,7 @@
 #     return parallel_chain | prompt | llm | StrOutputParser()
 
 
+
 from dotenv import load_dotenv
 
 load_dotenv()
