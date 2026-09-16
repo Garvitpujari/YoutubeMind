@@ -8,3 +8,4 @@ langchain-huggingface
 langchain-community
 faiss-cpu
 python-dotenv
+yt-dlp
