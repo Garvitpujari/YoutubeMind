@@ -151,7 +151,8 @@ from youtube_transcript_api import YouTubeTranscriptApi
 from youtube_transcript_api._errors import TranscriptsDisabled
 
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_community.retrievers import TFIDFRetriever
+from langchain_huggingface import HuggingFaceEndpointEmbeddings
+from langchain_community.vectorstores import FAISS
 
 from langchain_groq import ChatGroq
 from langchain_core.prompts import PromptTemplate
@@ -209,9 +210,12 @@ def create_vector_store(transcript_text: str):
 
     chunks = splitter.create_documents([transcript_text])
 
-    return TFIDFRetriever.from_documents(chunks)
+    embeddings = HuggingFaceEndpointEmbeddings(
+        model="sentence-transformers/all-MiniLM-L6-v2",
+        task="feature-extraction"
+    )
 
-
+    return FAISS.from_documents(chunks, embeddings)
 def create_chain(retriever):
 
     llm = ChatGroq(
